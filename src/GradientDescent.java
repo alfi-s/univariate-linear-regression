@@ -1,9 +1,11 @@
 public class GradientDescent {
 
+    static final String DATA_FILE = "data/MacdonellDF.csv";
+
     public static void main(String[] args) {
 
         // Our dataset.
-        double[][] data = Data.dataFrom(args[0]);
+        double[][] data = Data.dataFrom(DATA_FILE);
 
         // Number of iterations we want to run through the algorithm
         final int epochs = 100;
