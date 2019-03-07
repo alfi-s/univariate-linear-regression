@@ -8,7 +8,7 @@ public class GradientDescent {
         double[][] data = Data.dataFrom(DATA_FILE);
 
         // Number of iterations we want to run through the algorithm
-        final int epochs = 100;
+        final int epochs = 1000;
 
         // We want to predict h(x) = w1 * x + w0
         double w1 = 0;
