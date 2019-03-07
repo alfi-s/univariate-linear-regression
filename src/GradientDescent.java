@@ -3,7 +3,7 @@ public class GradientDescent {
     public static void main(String[] args) {
 
         // Our dataset.
-        double[][] data = GradientDescentData.DATA;
+        double[][] data = Data.dataFrom(args[0]);
 
         // Number of iterations we want to run through the algorithm
         final int epochs = 100;
@@ -13,7 +13,7 @@ public class GradientDescent {
         double w0 = 0;
 
         // Learning rate
-        double alpha = 0.001;
+        double alpha = 0.01;
 
         // GRADIENT DESCENT ALGORITHM FOR LEAST MEAN SQUARES
         for(int i = 0; i < epochs; i++) {
