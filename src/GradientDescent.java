@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class GradientDescent {
 
     static final String DATA_FILE = "data/MacdonellDF.csv";
@@ -5,7 +7,7 @@ public class GradientDescent {
     public static void main(String[] args) {
 
         // Our dataset.
-        double[][] data = Data.dataFrom(DATA_FILE);
+        List<List<Double>> data = Data.dataFrom(DATA_FILE);
 
         // Number of iterations we want to run through the algorithm
         final int epochs = 1000;
@@ -22,10 +24,10 @@ public class GradientDescent {
 
             double cost = 0;
 
-            for(int j = 0; j < data.length; j++) {
+            for(int j = 0; j < data.size(); j++) {
 
-                double x_j = data[j][0];
-                double y_j = data[j][1];
+                double x_j = data.get(0).get(j);
+                double y_j = data.get(1).get(j);
 
                 double prediction = (w1 * x_j) + w0;
 
