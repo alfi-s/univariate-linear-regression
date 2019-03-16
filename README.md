@@ -2,15 +2,16 @@
 Program in Java to demonstrate univariate linear regression with gradient descent.
 
 ## Usage
-Compile the program through:
-```bash
-$ javac src/*.java
-```
-Run the program through:
-```bash
-$ java -cp src GradientDescent
+On Linux or MacOS:
+```sh
+$ chmod +x gradient-descent.sh
+$ ./gradient-descent.sh
 ```
 
+On Windows:
+```bat
+C:\DIRECTORY> gradient-descent.bat
+```
 ## Data
 Data is stored as .csv files within the `/data` folder. 
 The program works on numeric data, thus the data should be formatted as two-column numeric data delimited with commas.

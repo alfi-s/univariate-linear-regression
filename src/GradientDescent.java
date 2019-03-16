@@ -51,8 +51,8 @@ public class GradientDescent {
 
             // ---------------------------------------------
             // Our Hypothesis Function after the epoch
-            // (these values need to be final because of how
-            // lambda expressions work in Java)
+            // (these values are final because of how
+            // functional programming works in Java).
             final double w_1 = w1;
             final double w_0 = w0;
             HypothesisFunction h_x = (x) -> (w_1 * x) + w_0;
