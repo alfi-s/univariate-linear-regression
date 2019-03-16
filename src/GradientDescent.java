@@ -6,20 +6,26 @@ public class GradientDescent {
 
     public static void main(String[] args) {
 
-        // Our dataset.
+        // -------------------------------------------------
+        // Data and Graph setup.
+        // -------------------------------------------------
         List<List<Double>> data = Data.dataFrom(DATA_FILE);
+        Plot plt = new Plot("Height vs Finger Length", "Height", "Finger Length", data);
+        sleep(500);
 
-        // Number of iterations we want to run through the algorithm
-        final int epochs = 1000;
+        // -------------------------------------------------
+        // Gradient Descent
+        // -------------------------------------------------
+        final int epochs = 100;  // Number of iterations we want to run through the algorithm
 
         // We want to predict h(x) = w1 * x + w0
-        double w1 = 0;
-        double w0 = 0;
+        double w1 = 1;
+        double w0 = 1;
 
         // Learning rate
         double alpha = 0.01;
 
-        // GRADIENT DESCENT ALGORITHM FOR LEAST MEAN SQUARES
+        // Main Gradient Descent Function for Linear Regression
         for(int i = 0; i < epochs; i++) {
 
             double cost = 0;
@@ -41,9 +47,27 @@ public class GradientDescent {
             }
 
             System.out.println("Current Cost: " + cost);
+
+
+            // ---------------------------------------------
+            // Our Hypothesis Function after the epoch
+            // (these values need to be final because of how
+            // lambda expressions work in Java)
+            final double w_1 = w1;
+            final double w_0 = w0;
+            HypothesisFunction h_x = (x) -> (w_1 * x) + w_0;
+            // ----------------------------------------------
+            // Plotting prediction with current values of w
+            plt.updatePlot(h_x);
+            sleep(10);
+            // ----------------------------------------------
         }
+
 
         System.out.println("Final Equation: h(x) = (" + w1 + " * x) + " + w0);
     }
 
+    static void sleep(int ticks) {
+        try{ Thread.sleep(ticks); } catch(Exception e) { e.printStackTrace(); }
+    }
 }

@@ -15,20 +15,29 @@ public class Data {
 
             while((line = reader.readLine()) != null) {
                 String[] rawValues = line.split(",");
-//                double[] values = new double[rawValues.length];
                 for(int i = 0; i < rawValues.length; i++) {
                     if(i >= output.size()) output.add(new ArrayList<>());
                     output.get(i).add(Double.parseDouble(rawValues[i]));
-//                    values[i] = Double.parseDouble(rawValues[i]);
                 }
-
-//                output.add(values);
             }
 
             reader.close();
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+        return output;
+    }
+
+    public static List<List<Double>> plotFunction(double min, double max, double step, HypothesisFunction f_x){
+        List<List<Double>> output = new ArrayList<>();
+        output.add(new ArrayList<>());
+        output.add(new ArrayList<>());
+
+        for(double x = min; x <= max; x += step) {
+            output.get(0).add(x);
+            output.get(1).add(f_x.evaluate(x));
         }
 
         return output;
