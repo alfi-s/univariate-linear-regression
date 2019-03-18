@@ -37,7 +37,7 @@ public class Plot {
         XYSeries raw = chart.addSeries("raw", data.get(0), data.get(1));
         raw.setXYSeriesRenderStyle(XYSeries.XYSeriesRenderStyle.Scatter);
 
-        List<List<Double>> plotPoints = Data.plotFunction(xMin, xMax, .5, (x)->0);
+        List<List<Double>> plotPoints = Data.plotFunction(xMin, xMax, .1, (x)->0);
 
         XYSeries plt = chart.addSeries("plot", plotPoints.get(0), plotPoints.get(1));
         plt.setXYSeriesRenderStyle(XYSeries.XYSeriesRenderStyle.Line);
@@ -81,7 +81,7 @@ public class Plot {
     }
 
     public void updatePlot(HypothesisFunction h_x) {
-        List<List<Double>> plotPoints = Data.plotFunction(xMin,xMax, 1, h_x);
+        List<List<Double>> plotPoints = Data.plotFunction(xMin,xMax, .1, h_x);
         chart.updateXYSeries("plot",plotPoints.get(0), plotPoints.get(1), null);
     }
 
