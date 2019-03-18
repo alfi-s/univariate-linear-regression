@@ -2,7 +2,7 @@ import java.util.List;
 
 public class GradientDescent {
 
-    static final String DATA_FILE = "data/MacdonellDF.csv";
+    public static final String DATA_FILE = "data/MacdonellDF.csv";
 
     public static void main(String[] args) {
 
@@ -19,8 +19,8 @@ public class GradientDescent {
         final int epochs = 100;  // Number of iterations we want to run through the algorithm
 
         // We want to predict h(x) = w1 * x + w0
-        double w1 = 1;
-        double w0 = 1;
+        double w1 = 0;
+        double w0 = 0;
 
         // Learning rate
         double alpha = 0.01;
@@ -59,7 +59,7 @@ public class GradientDescent {
             // ----------------------------------------------
             // Plotting prediction with current values of w
             plt.updatePlot(h_x);
-            sleep(10);
+            sleep(50);
             // ----------------------------------------------
         }
 

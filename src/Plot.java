@@ -3,11 +3,16 @@ import org.knowm.xchart.style.markers.SeriesMarkers;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Collections;
 import java.util.List;
 
 public class Plot {
 
     XYChart chart;
+    double yMin;
+    double yMax;
+    double xMin;
+    double xMax;
 
     public Plot(String title, String xAxis, String yAxis, List<List<Double>> data) {
 
@@ -19,10 +24,20 @@ public class Plot {
                         .yAxisTitle(yAxis)
                         .build();
 
+        this.yMin = yMin(data) - 3;
+        this.yMax = yMax(data) + 3;
+        this.xMin = xMin(data) - 3;
+        this.xMax = xMax(data) + 3;
+
+        chart.getStyler().setYAxisMin(yMin);
+        chart.getStyler().setYAxisMax(yMax);
+        chart.getStyler().setXAxisMin(xMin);
+        chart.getStyler().setXAxisMax(xMax);
+
         XYSeries raw = chart.addSeries("raw", data.get(0), data.get(1));
         raw.setXYSeriesRenderStyle(XYSeries.XYSeriesRenderStyle.Scatter);
 
-        List<List<Double>> plotPoints = Data.plotFunction(0, 10, .5, (x)->0);
+        List<List<Double>> plotPoints = Data.plotFunction(xMin, xMax, .5, (x)->0);
 
         XYSeries plt = chart.addSeries("plot", plotPoints.get(0), plotPoints.get(1));
         plt.setXYSeriesRenderStyle(XYSeries.XYSeriesRenderStyle.Line);
@@ -47,8 +62,26 @@ public class Plot {
 
     }
 
+    private double yMin(List<List<Double>> data) {
+        double min =  Collections.min(data.get(1));
+        return (min >= 0) ? 0 : min;
+    }
+
+    private double yMax(List<List<Double>> data) {
+        return Collections.max(data.get(1));
+    }
+
+    private double xMin(List<List<Double>> data) {
+        double min =  Collections.min(data.get(0));
+        return (min >= 0) ? 0 : min;
+    }
+
+    private double xMax(List<List<Double>> data) {
+        return Collections.max(data.get(0));
+    }
+
     public void updatePlot(HypothesisFunction h_x) {
-        List<List<Double>> plotPoints = Data.plotFunction(0,10, .5, h_x);
+        List<List<Double>> plotPoints = Data.plotFunction(xMin,xMax, 1, h_x);
         chart.updateXYSeries("plot",plotPoints.get(0), plotPoints.get(1), null);
     }
 
