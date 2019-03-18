@@ -16,6 +16,7 @@ public class Plot {
 
     public Plot(String title, String xAxis, String yAxis, List<List<Double>> data) {
 
+        // Create the chart
         chart = new XYChartBuilder()
                         .width(1000)
                         .height(600)
@@ -24,21 +25,26 @@ public class Plot {
                         .yAxisTitle(yAxis)
                         .build();
 
+        // Finding the domain and range to plot the graph in
         this.yMin = yMin(data) - 3;
         this.yMax = yMax(data) + 3;
         this.xMin = xMin(data) - 3;
         this.xMax = xMax(data) + 3;
 
+        // Set the domain and range of the graph.
         chart.getStyler().setYAxisMin(yMin);
         chart.getStyler().setYAxisMax(yMax);
         chart.getStyler().setXAxisMin(xMin);
         chart.getStyler().setXAxisMax(xMax);
 
+        // Create the scatter plot of the data
         XYSeries raw = chart.addSeries("raw", data.get(0), data.get(1));
         raw.setXYSeriesRenderStyle(XYSeries.XYSeriesRenderStyle.Scatter);
 
+        // Plot the initial function with multiple points and join them with a line
         List<List<Double>> plotPoints = Data.plotFunction(xMin, xMax, .1, (x)->0);
 
+        // To draw the function.
         XYSeries plt = chart.addSeries("plot", plotPoints.get(0), plotPoints.get(1));
         plt.setXYSeriesRenderStyle(XYSeries.XYSeriesRenderStyle.Line);
         plt.setShowInLegend(false);

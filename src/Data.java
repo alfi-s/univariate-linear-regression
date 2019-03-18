@@ -6,6 +6,9 @@ import java.util.List;
 
 public class Data {
 
+    /*
+     * Reads the data from a given csv file
+     */
     public static List<List<Double>> dataFrom(String fileName) {
         List<List<Double>> output = new ArrayList<>();
 
@@ -30,6 +33,9 @@ public class Data {
         return output;
     }
 
+    /*
+     * Generates the points to plot a function.
+     */
     public static List<List<Double>> plotFunction(double min, double max, double step, HypothesisFunction f_x){
         List<List<Double>> output = new ArrayList<>();
         output.add(new ArrayList<>());
