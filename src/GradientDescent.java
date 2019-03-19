@@ -30,7 +30,7 @@ public class GradientDescent {
 
             double cost = 0;
 
-            for(int j = 0; j < data.size(); j++) {
+            for(int j = 0; j < data.get(0).size(); j++) {
 
                 double x_j = data.get(0).get(j);
                 double y_j = data.get(1).get(j);
