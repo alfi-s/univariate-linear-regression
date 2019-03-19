@@ -13,6 +13,7 @@ public class Plot {
     double yMax;
     double xMin;
     double xMax;
+    JFrame frame;
 
     public Plot(String title, String xAxis, String yAxis, List<List<Double>> data) {
 
@@ -53,7 +54,7 @@ public class Plot {
         SwingUtilities.invokeLater(() -> {
 
                 // Create and set up the window.
-                JFrame frame = new JFrame(title);
+                frame = new JFrame(title);
                 frame.setLayout(new BorderLayout());
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -89,6 +90,7 @@ public class Plot {
     public void updatePlot(HypothesisFunction h_x) {
         List<List<Double>> plotPoints = Data.plotFunction(xMin,xMax, .1, h_x);
         chart.updateXYSeries("plot",plotPoints.get(0), plotPoints.get(1), null);
+        frame.repaint();
     }
 
 }
